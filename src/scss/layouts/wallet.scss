@@ -1,0 +1,11 @@
+@import "../abstracts/variables";
+
+.wallet {
+  &__title {
+    .key-word {
+      &::before {
+          content: '02';
+      }
+    }
+  }
+}

@@ -1,0 +1,99 @@
+// Файл для миксинов кнопок!
+.button {
+  @include button(200px, 48px, 16px); // базовый миксин для кнопки
+  > * {
+    cursor: url('./assets/pointer.svg'), auto;
+  }
+}
+
+.button-filled {
+  // наследуем стили класса дефолтной кнопки
+  @extend .button;
+
+  background: $btnFilledBcg;
+  color: $btnFilledColor;
+  &:focus:enabled,
+  &:hover:enabled {
+    background: $orangeDark;
+  }
+  &:active:enabled {
+    background: $orangeLight;
+  }
+  &:disabled {
+    background: $disabledColor;
+    color: $disabledFontColor;
+  }
+}
+
+.button-glow {
+  // наследуем стили класса дефолтной кнопки
+  @extend .button;
+
+  position: relative;
+  background-color: $btnGlowBcg;
+  color: $btnGlowColor;
+  border-right: 3px solid $lightblueDark;
+  border-left: 3px solid $lightblueDark;
+  transition: all 300ms ease-in-out;
+  font-weight: 500;
+  z-index: 1;
+  &::before {
+    content: "";
+    position: absolute;
+    left: -2px;
+    top: 0;
+    width: calc(100% + 4px);
+    height: inherit;
+    border: 2px solid;
+    border-image: $btnGlowBorderColor;
+    border-image-slice: 1;
+    z-index: -1;
+  }
+  &:focus:enabled,
+  &:hover:enabled {
+    background: $lightblueLight;
+    color: $darkColor;
+    border: none;
+    box-shadow: 0px 0px 20px 20px rgba(124, 218, 249, 0.09);
+    &::before {
+      display: none;
+    }
+  }
+  &:active:enabled {
+    transition: all 300ms ease-in-out;
+    border: 2px solid $lightblueDark;
+    box-shadow: none;
+    background: $btnGlowBcg;
+    color: $lightblueLight;
+  }
+  &:disabled {
+    border: 2px solid $disabledColor;
+    color: $disabledFontColor;
+    &::before {
+      border-image-slice: 0;
+    }
+  }
+}
+
+.button-origin {
+  // наследуем стили класса дефолтной кнопки
+  @extend .button;
+
+  border: 2px solid $orangeLight;
+  color: $btnOriginFontColor;
+  background: $btnOriginBcg;
+  transition: all 300ms ease-in-out;
+  &:focus:enabled,
+  &:hover:enabled {
+    border: none;
+    background: $orangeDark;
+  }
+  &:active:enabled {
+    border: none;
+    background: $orangeLight;
+  }
+  &:disabled {
+    color: $disabledColor;
+    border: 2px solid $disabledColor;
+  }
+}

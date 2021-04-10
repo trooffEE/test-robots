@@ -1,0 +1,94 @@
+@import "../abstracts/variables";
+
+.hero {
+  &__title {
+    font-size: 3.5rem;
+    line-height: 1.28;
+    margin-top: 24px;
+    margin-bottom: 23px;
+    .key-word {
+      &::before {
+        content: "01";
+      }
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: $fontMainColor;
+  }
+
+  &__container {
+    position: relative;
+    grid-template-columns: 1fr 340px;
+  }
+
+  &__art {
+    position: relative;
+    display: flex;
+
+    &-robot {
+      z-index: 4;
+    }
+
+    &-robot#art-1 {
+      width: 176px;
+      height: 309px;
+      // здесь приходится очень много подгонять в ручную, так как в макете предоставленные изображения
+      // имееют ряд проблем (прозрачные поля вокруг иозображений)
+      background-image: url("./../../../assets/robots.png");
+      background-position-x: calc((236px + 20px) * -5 - 90px);
+      background-position-y: 59%;
+      background-repeat: no-repeat;
+      background-size: auto 140%;
+    }
+    &-robot#art-2 {
+      align-self: flex-end;
+      margin-bottom: 12px;
+      margin-left: 20px;
+      width: 138px;
+      height: 196px;
+      // здесь приходится очень много подгонять в ручную, так как в макете предоставленные изображения
+      // имееют ряд проблем (прозрачные поля вокруг иозображений)
+      background-image: url("./../../../assets/robots.png");
+      background-position-x: calc((236px + 20px) * -4 - 15px);
+      background-position-y: 74%;
+      background-repeat: no-repeat;
+      background-size: auto 135%;
+    }
+  }
+  &__art::before {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background-color: #1e2936;
+    width: 275px;
+    height: 275px;
+    left: 31px;
+    top: 0;
+  }
+}
+
+.scroll-helper-message {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  color: $leftSideColor;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  writing-mode: vertical-rl;
+  text-orientation:mixed;
+  transform: rotate(180deg);
+  top: 66%;
+  left: 0;
+  text-transform: uppercase;
+  &::before {
+    display: inline-block;
+    content: url("../../../assets/arrow.svg");
+    transform: rotate(180deg);
+    margin-bottom: 10px;
+    align-self: center;
+  }
+}

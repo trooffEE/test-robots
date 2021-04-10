@@ -1,0 +1,7 @@
+.storage {
+    &__title {
+        .key-word::before {
+            content: '04';
+        }
+    }
+}

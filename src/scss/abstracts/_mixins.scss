@@ -1,0 +1,14 @@
+@mixin button($w, $h, $f-size) {
+  width: $w;
+  height: $h;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 60px;
+  font-size: $f-size;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  transition: all 100ms ease-in-out;
+  cursor: url('./assets/pointer.svg'), auto;
+  // padding: 0 18px;
+}

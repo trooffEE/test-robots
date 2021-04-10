@@ -1,0 +1,41 @@
+// Цвета!
+$fontColor: #fff;
+$fontMainColor: #A3B8CC;
+$darkColor: #212529;
+
+$disabledColor: #4c5865;
+$disabledFontColor: #7d90a6;
+$leftSideColor: #667380;
+
+$orangeLight: #ff7f22;
+$orangeDark: #FF5722;
+
+$lightblueDark: #22b3e3;
+$lightblueLight: #7cdaf9;
+
+// Кнопки "filled"
+$btnFilledBcg: linear-gradient(
+  180deg,
+  $orangeLight 0%,
+  $orangeDark 100%
+);
+$btnFilledColor: #fff;
+
+// Кнопки "glow"
+$btnGlowBcg: transparent;
+$btnGlowBorderColor: linear-gradient(
+  90deg,
+  $lightblueDark 0%,
+  $lightblueLight 33%,
+  $lightblueDark 66%
+);
+$btnGlowColor: $lightblueLight;
+
+// Кнопки "origin"
+
+$btnOriginBcg: transparent;
+$btnOriginFontColor: #fff;
+
+// Checkboxes
+
+$checkboxBorderColor: #A3B8CC;

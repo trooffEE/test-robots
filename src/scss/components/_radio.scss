@@ -1,0 +1,38 @@
+// input[type="radio"] {
+//     appearance: none;
+//     width: 48px;
+//     height: 48px;
+//     border-radius: 4px;
+//     background: #333940;
+//     &:checked {
+//         background: transparent;
+//         border: 2px solid $orangeLight;
+//         background-color: red;
+//     }
+// }
+
+.radio {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 2px solid $fontMainColor;
+  border-radius: 50%;
+  position: relative;
+  transform: all 300ms ease-in-out;
+
+  &::before {
+    content: "";
+  }
+  
+  &:checked::before {
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $orangeLight;
+  }
+}

@@ -1,0 +1,28 @@
+.checkbox {
+  appearance: none;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  outline: none;
+  border: 2px solid $checkboxBorderColor;
+  transition: all 300ms ease-in-out;
+  &:focus,
+  &:hover {
+    border-color: darken($checkboxBorderColor, 36%);
+  }
+  &:checked::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("./assets/checkMark.svg");
+  }
+}
+
+.checkbox-item {
+  appearance: none;
+}

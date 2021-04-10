@@ -1,0 +1,28 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button {
+  overflow: hidden;
+  border: none;
+  outline: none;
+}
+
+.section {
+  display: grid;
+}
+
+.section-container {
+  display: grid;
+  padding-left: 130px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.content-wrapper {
+  max-width: 756px;
+}

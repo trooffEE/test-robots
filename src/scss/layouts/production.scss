@@ -1,0 +1,105 @@
+@import "../abstracts/variables";
+
+.production {
+  &__title {
+    .key-word::before {
+      content: "05";
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(3, 240px);
+    grid-template-rows: 176px 1fr;
+    gap: 60px 24px;
+  }
+
+  &-message {
+      &__container {
+          display: flex;
+          align-items: center;
+      }
+      font-size: 0.75rem;
+      color: $fontMainColor;
+      line-height: 1.33;
+  }
+
+  &-robot {
+    grid-column: 3;
+    grid-row: 1 / 3;
+  }
+
+  &-create__container {
+    grid-column: 1 / 3;
+  }
+
+  &-button {
+    width: 236px !important;
+  }
+
+  &__parts {
+    display: flex;
+    &-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 48px;
+      height: 48px;
+      background-color: #333940;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    &-item:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  &__parts:not(:last-child) {
+    margin-bottom: 16px;
+  }
+
+  &-specs {
+    &__type {
+      display: flex;
+      align-items: center;
+      padding-right: 15px;
+
+      & input {
+        margin-right: 12px;
+      }
+
+      & label {
+        font-size: 0.75rem;
+        line-height: 1.33;
+        font-weight: 400;
+      }
+    }
+
+    &__type-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__type-container:not(:last-child) {
+      margin-bottom: 28px;
+    }
+
+    &__title {
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.43;
+      color: $fontColor;
+      margin-bottom: 20px;
+    }
+
+    &__container {
+      padding-right: 10px;
+    }
+  }
+
+  &-create {
+    &__container {
+      margin-top: 37px;
+    }
+  }
+}
