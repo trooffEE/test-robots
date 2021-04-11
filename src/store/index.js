@@ -7,6 +7,9 @@ import {
   hideModal,
   buyProduct,
   sellProduct,
+  addItemProduction,
+  removeItemFromProduction,
+  robotDone,
 } from "./action-creators";
 
 const {
@@ -15,9 +18,14 @@ const {
   HIDE_MODAL,
   BUY_PRODUCT,
   SELL_PRODUCT,
+  ADD_ITEM_TO_PROD,
+  REMOVE_ITEM_FROM_PROD,
+  SET_ROBOT_DONE,
 } = MUTATIONS_TYPES;
 
 Vue.use(Vuex);
+
+// Получилось довольно много кода, который бы лучше разбить на модули!
 
 export default new Vuex.Store({
   state: {
@@ -57,6 +65,21 @@ export default new Vuex.Store({
         quantity: 0,
       },
     ],
+    partsInProd: [
+      {
+        name: "Биомеханизм",
+        quantity: 0,
+      },
+      {
+        name: "Процессор",
+        quantity: 0,
+      },
+      {
+        name: "Душа",
+        quantity: 0,
+      },
+    ],
+    isRobotDone: false,
   },
 
   mutations: {
@@ -76,6 +99,15 @@ export default new Vuex.Store({
           ...state.modal,
           modalDescription: "Вы не можете нацыганить более 100 монет biorobo",
         };
+      } else if (modalToShow === "Done") {
+        state.modal = {
+          ...state.modal,
+          modalTitle: "Биоробот произведён",
+        };
+        state.modal = {
+          ...state.modal,
+          modalDescription: "Поздравляем! Вы произвели биоробота",
+        };
       }
     },
 
@@ -90,22 +122,49 @@ export default new Vuex.Store({
       state.parts = state.parts.map((item) => {
         if (item.name === name) {
           item.quantity++;
-          state.coins -= state.parts.find((item) => item.name === name).price.buy;
+          state.coins -= state.parts.find(
+            (item) => item.name === name
+          ).price.buy;
         }
         return item;
       });
     },
 
     [SELL_PRODUCT](state, { name }) {
-      state.parts = state.parts.map(item => {
+      state.parts = state.parts.map((item) => {
         if (item.name === name) {
           if (item.quantity > 0) {
             item.quantity--;
-            state.coins += state.parts.find(item => item.name === name).price.sell;
+            state.coins += state.parts.find(
+              (item) => item.name === name
+            ).price.sell;
           }
         }
         return item;
       });
+    },
+
+    [ADD_ITEM_TO_PROD](state, { name }) {
+      state.partsInProd = state.partsInProd.map((item) => {
+        if (item.name === name) {
+          item.quantity++;
+        }
+        return item;
+      });
+    },
+
+    [REMOVE_ITEM_FROM_PROD](state, { name }) {
+      state.partsInProd = state.partsInProd.map((item) => {
+        if (item.name === name) {
+          item.quantity--;
+        }
+        return item;
+      });
+    },
+
+    [SET_ROBOT_DONE](state) {
+      state.coins = state.coins - 10;
+      state.isRobotDone = true;
     },
   },
 
@@ -124,6 +183,13 @@ export default new Vuex.Store({
       else {
         commit(showModal("Coin"));
       }
+    },
+
+    robotDone({ commit }) {
+      commit(robotDone());
+      setTimeout(() => {
+        commit(showModal("Done"));
+      }, 1000);
     },
 
     closeModal({ commit }) {
@@ -145,9 +211,24 @@ export default new Vuex.Store({
 
       if (state.coins + ourPart.price.sell <= 100) {
         commit(sellProduct(name));
+
+        if (
+          ourPart.quantity <
+          state.partsInProd.find((item) => item.name).quantity
+        ) {
+          commit(removeItemFromProduction(name));
+        }
       } else {
-        commit(showModal("Coins"));
+        commit(showModal("Coin"));
       }
+    },
+
+    addItemToProduction({ commit }, name) {
+      commit(addItemProduction(name));
+    },
+
+    removeItemProduction({ commit }, name) {
+      commit(removeItemFromProduction(name));
     },
   },
 });
